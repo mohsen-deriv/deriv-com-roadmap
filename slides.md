@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: ./images/road-map.jpg
+background: './images/road-map.jpg'
 class: text-center
 highlighter: shiki
 lineNumbers: false
@@ -89,7 +89,7 @@ Here are the objectives we have in mind:
 
 ---
 theme: seriph
-background: ./images/question-mark-image.jpg
+background: './images/question-mark-image.jpg'
 class: text-center
 highlighter: shiki
 lineNumbers: false
