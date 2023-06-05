@@ -1,9 +1,17 @@
 ---
 theme: seriph
-background: https://source.unsplash.com/collection/94734566/1920x1080
+background: ./images/road-map.jpg
 class: text-center
 highlighter: shiki
 lineNumbers: false
+layout: cover
+fonts:
+  # basically the text
+  sans: "Robot"
+  # use with `font-serif` css class from windicss
+  serif: "Robot Slab"
+  # for code blocks, inline code, etc.
+  mono: "Fira Code"
 info: |
   ## Deriv Com Road map
   After Rebranding
@@ -24,10 +32,7 @@ Rebranding Our codebase
 </div>
 
 <div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub"
+  <a href="https://github.com/mohsen-deriv/deriv-com-roadmap" target="_blank" alt="GitHub"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
@@ -49,11 +54,6 @@ Our rebranding efforts were not just about the UI, we re-branded our codebase as
 - 🧑‍💻 **Developer Experience** - our developer experience is much smoother now, faster deliveries is our goal
 - 🤹 **Speed** - we improved the page, now the LCP is down to 2.5 sec from 5 sec
 - 🎥 **Project Structure** - building a good foundation for the future (strapi, real-time features)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
 
 <style>
 h1 {
@@ -88,8 +88,16 @@ Here are the objectives we have in mind:
 - Smooth Developer Experience
 
 ---
-
+theme: seriph
+background: ./images/question-mark-image.jpg
+class: text-center
+highlighter: shiki
+lineNumbers: false
+layout: cover
+---
 # Why?
+
+---
 
 ## Replace Gatsby with NextJS
 
