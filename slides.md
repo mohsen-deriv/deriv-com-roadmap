@@ -5,19 +5,17 @@ class: text-center
 highlighter: shiki
 lineNumbers: false
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+  ## Deriv Com Road map
+  After Rebranding
 drawings:
   persist: false
 transition: slide-left
-title: Welcome to Slidev
+title: Deriv Com Road map
 ---
 
-# Welcome to Slidev
+# Deriv-Com Road map
 
-Presentation slides for developers
+Rebranding Our codebase
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
@@ -41,24 +39,16 @@ The last comment block of each slide will be treated as slide notes. It will be 
 
 ---
 
-## transition: fade-out
+# Front-end Team Achievements on Rebranding
 
-# What is Slidev?
+Our rebranding efforts were not just about the UI, we re-branded our codebase as well to achieve:
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
+- 📝 **Semantic HTML** - our developers can now provide better semantics for our pages
+- 🎨 **Cleaner design and design system** - we studied the design system in order to setup a simple design system for deriv-com
+- 🎨 **Atomic Design** - we introduced the atomic design to the project and home page is implemented with this approach
+- 🧑‍💻 **Developer Experience** - our developer experience is much smoother now, faster deliveries is our goal
+- 🤹 **Speed** - we improved the page, now the LCP is down to 2.5 sec from 5 sec
+- 🎥 **Project Structure** - building a good foundation for the future (strapi, real-time features)
 
 <!--
 You can have `style` tag in markdown to override the style for the current page.
@@ -77,134 +67,114 @@ h1 {
 }
 </style>
 
-<!--
-Here is another comment.
--->
+---
+
+# Our Vision
+
+Even though we want dynamic control over the content and features in deriv-com project, we need static HTML/CSS contents on the built version of it.
+
+Here are the objectives we have in mind:
+
+- Replace Gatsby with NextJS
+- Separated Builds for EU and ROW version
+- Use monorepo [nx](https://nx.dev/)
+- Better Image delivery ( size, quality based on user's device )
+- Faster Builds and Deployments
+- Per page / component translations
+- Light weight pages and faster page loads
+- Separation of UI and Data ( content )
+- Alignment with Strapi project ( Dynamic content )
+- Test coverage on our components and logics ( not our pages )
+- Smooth Developer Experience
 
 ---
 
-## layout: default
+# Why?
 
-# Table of contents
+## Replace Gatsby with NextJS
 
-```
-<Toc minDepth="1" maxDepth="5"></Toc>
-```
+Our project is moving away from developer dependant style, we want more dynamic feature such as content dashboard, strapi connection and more control on our build system and data fetching.
 
-<Toc></Toc>
+Unfortunately Gatsby's plugin system is not the answer to our requirements anymore, we're having a lot of struggles with it.
+on the other hand the NextJS frameworks provides:
 
----
+- more control over our project ( dev env, build steps, data fetching, etc )
+- it provides faster builds ( almost 70x faster )
+- better localization strategies
+- complete control over our images and assets ( no graphQL involved )
 
-transition: slide-up
+Using NextJS for deriv-com will add certain level of complexity to it and it's major shift and refactoring. but in order to modernize our project it's a required step.
 
-## level: 2
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
-
-### Keyboard Shortcuts
-
-|                                                    |                             |
-| -------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                | next animation or slide     |
-| <kbd>left</kbd> / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                      | previous slide              |
-| <kbd>down</kbd>                                    | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-/>
-
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+> Note: there are other framework options in the market, but considering the team's current skill set ( React ), NextJS was chosen as the candidate.
 
 ---
 
-layout: image-right
-image: https://source.unsplash.com/collection/94734566/1920x1080
+## Separated Builds for EU and ROW version
+
+Right now we have conditional rendering in 80% of pages on run-time to present the correct content to our users.
+
+current codebase checks the url ( deriv.com or eu.deriv.com ) to determine the `IS_EU` and `IS_ROW` conditions.
+
+we can setup two projects in a monorepo ( or without it ) and control the build type with some `ENV` variables or other methods.
+the final build outputs will be static content for each type ( EU and ROW ).
+
+both projects will use the same components and codebase but the build result will be different.
+deployment will be easier and smoother for both types. not all changes in deriv.com should be dependant to eu.deriv.com
+
+this will remove the huge overhead we have on runtime. most of our unused javascript issues reported by web vitals are caused by this factor.
 
 ---
 
-# Code
+## Use Monorepo [nx](https://nx.dev)
 
-Use code snippets and get the highlighting directly![^1]
+Managing our codebase with separated builds for each region will hard to handle. in order to have better control on our components we can use the [nx](https://nx.dev) project, this will enable us to:
 
-```ts {all|2|1-6|9|all}
-interface User {
-  id: number;
-  firstName: string;
-  lastName: string;
-  role: string;
-}
-
-function updateUser(id: number, update: User) {
-  const user = getUser(id);
-  const newUser = { ...user, ...update };
-  saveUser(id, newUser);
-}
-```
-
-<arrow v-click="3" x1="400" y1="420" x2="230" y2="330" color="#564" width="3" arrowSize="1" />
-
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<style>
-.footnotes-sep {
-  @apply mt-20 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
+- Share the components and logic between `EU` and `ROW` builds
+- Faster build time, since we'll integrate the nx caching system.
+- Better project structure
+- More automation in place for page generation, etc. ( nx generators )
+- Separated UI library
+- Better control on tree-shaking which will help us generate smaller bundles
+- Separated Image optimization with build-time caching and hashing, in a sense we'll consider images as codes
 
 ---
 
-# Components
+## Better Image delivery
 
-<div grid="~ cols-2 gap-4">
-<div>
+In current structure we're using `gatsby-image-plugin` to optimize the images, every time we start / build the project we have to optimize the images, which takes around 20 minutes on our machines.
 
-You can use Vue components directly inside your slides.
+since we don't change our images that much we don't have to optimize them on each build / run, we'll create our own local image optimization engine to handle the process in a separate package ( in a monorepo ).
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+with this implemented in our project we can cache them and use the same images for future runs / builds.
+this will drastically decrease the build time and dev time resources.
 
-```html
-<Counter :count="10" />
-```
+for a similar implementation, please check out [this repo](https://github.com/Niels-IO/next-image-export-optimizer)
 
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
+---
 
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
+## Per page / component translations
 
-</div>
-<div>
+Every day we add more content to the application's codebase, which will generate more `texts`, `strings` to be translated. all of these translated strings will be included ( parsed and stored in memory ) in the first render of the page which causes the heavy page size issue.
 
-```html
-<Tweet id="1390115482657726468" />
-```
+our plan is to separate the translations by feature, page, component. so for example our navigation bar feature is always the same thing in all of our pages. we will create a namespace or section in our translation files specifically for navigation bar.
 
-<Tweet id="1390115482657726468" scale="0.65" />
+and with the same approach we'll separate each page content into it's own section. this will make our pages lighter but we might have duplicated words or strings in our translation files which can be handled by code to remove these duplications.
 
-</div>
-</div>
+finally when we build the project, each page will only contain the needed strings in it and not the whole translation files.
 
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
+which will help to reduce the page size.
 
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
+> Note: this will require good communication between FE team and translation team. we can setup good processes to handle the situation.
+
+---
+
+## Separation of UI and Data
+
+In our current structure our content is directly included in our codebase, basically our components will check the do the conditional rendering on runtime and then based on the passed condition will render a portion of our content.
+
+we need to separate our content from our code, in a sense our code will be injected by our content ( it can be from strapi, json, js object ) and then based on the condition it will render the correct portion of our content.
+
+we have all the functionalities and logics in place to implements this, this task is still in progress.
 
 ---
 
@@ -414,23 +384,3 @@ database "MySql" {
 ```
 
 </div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-
-src: ./pages/multiple-entries.md
-hide: false
-
----
-
----
-
-layout: center
-class: text-center
-
----
-
-# Learn More
-
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
