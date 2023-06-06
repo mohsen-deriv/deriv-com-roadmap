@@ -133,6 +133,23 @@ this will remove the huge overhead we have on runtime. most of our unused javasc
 
 ---
 
+## Separated Builds Diagram
+
+<div class="pt-10 mt-4">
+
+```mermaid {theme: 'neutral', scale: 0.8}
+graph TD
+B[Components and Logics] --> C{IS_EU}
+C -->|True| D[Built version for eu.deriv.com]
+C -->|False| E[Built version for deriv.com]
+D --> F[Will be deployed on eu.deriv.com]
+E --> G[Will be deployed on deriv.com]
+```
+</div>
+
+
+---
+
 ## Use Monorepo [nx](https://nx.dev)
 
 Managing our codebase with separated builds for each region will hard to handle. in order to have better control on our components we can use the [nx](https://nx.dev) project, this will enable us to:
@@ -145,6 +162,7 @@ Managing our codebase with separated builds for each region will hard to handle.
 - Better control on tree-shaking which will help us generate smaller bundles
 - Separated Image optimization with build-time caching and hashing, in a sense we'll consider images as codes
 - Reusing deriv-com codebase for smaller projects ( conference-events project, etc )
+- More testable components and logic
 
 ---
 
@@ -196,6 +214,17 @@ We've taken a different path in past couple of month to provide better control o
 
 As of now the status of the strapi project is still in progress, most of the needed steps are done but unfortunately the deriv-com codebase is not ready to accept this kind of dynamic structure ( please have a look at separation or data and UI slide )
 
+---
+
+There are couple of things we have to investigate before starting the implementation.
+
+1. Our current approach for handling the cookies
+2. Status of Strapi project and it's integration approach
+3. Deriv Re-branded design system
+
+These are the subject we're not currently sure, so please keep it mind that we might change the plan a little bit along the way.
+
+
 
 
 ---
@@ -208,80 +237,20 @@ layout: cover
 ---
 # How?
 
+
 ---
 
-# Diagrams
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+# Pre requisites  
 
-<div class="grid grid-cols-3 gap-10 pt-4 -mb-6">
+Shifting from Gatsby to NextJS is the major change and We 4 steps before 
 
-```mermaid {scale: 0.5}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectivness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
+1. Complete rebranding 
+1. Refactor our pages with the new atomic approach
+2. Separate the UI and Data ( Content )
+3. Understand translation team needs and provide better messages for them ( related to per page / component translation )
+4. Setup epics and milestones
 
 
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
+---
 
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
