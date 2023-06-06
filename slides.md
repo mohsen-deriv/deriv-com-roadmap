@@ -137,7 +137,7 @@ this will remove the huge overhead we have on runtime. most of our unused javasc
 
 <div class="pt-10 mt-4">
 
-```mermaid {theme: 'neutral', scale: 0.8}
+```mermaid {theme: 'dark', scale: 0.8}
 graph TD
 B[Components and Logics] --> C{IS_EU}
 C -->|True| D[Built version for eu.deriv.com]
