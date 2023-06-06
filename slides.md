@@ -144,6 +144,7 @@ Managing our codebase with separated builds for each region will hard to handle.
 - Separated UI library
 - Better control on tree-shaking which will help us generate smaller bundles
 - Separated Image optimization with build-time caching and hashing, in a sense we'll consider images as codes
+- Reusing deriv-com codebase for smaller projects ( conference-events project, etc )
 
 ---
 
@@ -155,6 +156,8 @@ since we don't change our images that much we don't have to optimize them on eac
 
 with this implemented in our project we can cache them and use the same images for future runs / builds.
 this will drastically decrease the build time and dev time resources.
+
+Also this approach will resolve the correct image size for different devices issue.
 
 for a similar implementation, please check out [this repo](https://github.com/Niels-IO/next-image-export-optimizer)
 
@@ -192,6 +195,18 @@ currently homepage, navigation bar, footer is implemented with this approach.
 We've taken a different path in past couple of month to provide better control over our content and provide means and mediums for the managers and content team to have control on changing the contents.
 
 As of now the status of the strapi project is still in progress, most of the needed steps are done but unfortunately the deriv-com codebase is not ready to accept this kind of dynamic structure ( please have a look at separation or data and UI slide )
+
+
+
+---
+theme: seriph
+background: './images/paper-plane-how.jpg'
+class: text-center
+highlighter: shiki
+lineNumbers: false
+layout: cover
+---
+# How?
 
 ---
 
